@@ -2,7 +2,7 @@
 .mvn
 target
 *.iml
-HELP.md
+log
 
 # Log file
 *.log
