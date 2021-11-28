@@ -10,18 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 abstract class RepositoryBaseTest {
 
-    final long EPOCH_1 = 1638056441L; // 2021-11-27 23:40:41
-    final float TEMP_1 = 12.43f;
-
-    final long EPOCH_2 = 1638054000L; // 2021-11-27 23:00:00
-    final float TEMP_2 = 43f;
-
-    final long EPOCH_3 = 1637971200L; // 2021-11-27 00:00:00
-    final float TEMP_3 = -7.652f;
-
-    final long EPOCH_4 = 1638124068L; // 2021-11-27 00:00:00
-    final float TEMP_4 = -17.652f;
-
     protected void assertResult(long time, float tempMin, float tempMax, float expectedAggregatedValue,
                               List<AggregatedData> aggregatedResult, int epochBase) {
         assertNotNull(aggregatedResult);

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.temperatureapis.Constants.*;
+
 @RestController
-@RequestMapping("/temperature")
+@RequestMapping(TEMPERATURE_CONTROLLER)
 @RequiredArgsConstructor
 public class TemperatureController {
     private final JmsService jmsService;
@@ -24,13 +26,13 @@ public class TemperatureController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(path = "/hourly/{fromEpoch}/{tillEpoch}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = TEMPERATURE_HOURLY_ENDPOINT, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AggregatedData>> getHourlyAggregatedData(@PathVariable Long fromEpoch, @PathVariable Long tillEpoch) {
         var report = temperatureService.retrieveHourlyTemperature(fromEpoch, tillEpoch);
         return ResponseEntity.ok(report);
     }
 
-    @GetMapping(path = "/daily/{fromEpoch}/{tillEpoch}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = TEMPERATURE_DAILY_ENDPOINT, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AggregatedData>> getDailyAggregatedData(@PathVariable Long fromEpoch, @PathVariable Long tillEpoch) {
         var report = temperatureService.retrieveDailyTemperature(fromEpoch, tillEpoch);
         return ResponseEntity.ok(report);

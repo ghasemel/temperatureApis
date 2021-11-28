@@ -1,5 +1,6 @@
 package com.example.temperatureapis.repository;
 
+import com.example.temperatureapis.Constants;
 import com.example.temperatureapis.domain.Temperature;
 import com.example.temperatureapis.exceptionhandler.Errors;
 import org.junit.jupiter.api.MethodOrderer;
@@ -9,12 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.HttpServerErrorException;
 
+import static com.example.temperatureapis.TestConstants.*;
 import static com.example.temperatureapis.repository.Repository.ONE_DAY_IN_SEC;
 import static com.example.temperatureapis.repository.Repository.ONE_HOUR_IN_SEC;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.Random.class)
-@ActiveProfiles({ "inMemoryRepo", "dev" })
+@ActiveProfiles(profiles = { Constants.IN_MEMORY_PROFILE, Constants.DEV })
 class InMemoryRepositoryTest extends RepositoryBaseTest {
 
     private final InMemoryRepository repository = new InMemoryRepository();
