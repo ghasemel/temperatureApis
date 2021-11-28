@@ -19,7 +19,6 @@ import java.util.UUID;
 public class Temperature implements Serializable {
     private static final long serialVersionUID = 3172426094028871356L;
 
-    private UUID id;
     private long epoch;
     private float value;
 }

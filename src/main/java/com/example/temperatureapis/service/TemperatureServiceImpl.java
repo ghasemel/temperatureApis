@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -16,9 +15,8 @@ public class TemperatureServiceImpl implements TemperatureService {
     private final Repository repository;
 
     @Override
-    public UUID save(Temperature temperature) {
+    public void save(Temperature temperature) {
         repository.insert(temperature);
-        return temperature.getId();
     }
 
     @Override

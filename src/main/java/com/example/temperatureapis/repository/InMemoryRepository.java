@@ -2,12 +2,14 @@ package com.example.temperatureapis.repository;
 
 import com.example.temperatureapis.domain.AggregatedData;
 import com.example.temperatureapis.domain.Temperature;
+import com.example.temperatureapis.exceptionhandler.Errors;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,9 @@ public class InMemoryRepository implements Repository {
 
     @Override
     public void insert(Temperature temperature) {
-        temperature.setId(UUID.randomUUID());
+        if (temperature == null)
+            throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, Errors.NULL_TEMPERATURE);
+
         updateAggregatedData(temperature, last24hAggregation, ONE_HOUR_IN_SEC);
         updateAggregatedData(temperature, last7dAggregation, ONE_DAY_IN_SEC);
     }

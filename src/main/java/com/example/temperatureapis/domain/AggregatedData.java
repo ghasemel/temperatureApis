@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Table(name = "TEMPERATURE_AGGREGATED_DATA", indexes = @Index(name = "typeAndIdIndex", columnList = "id,type"))
 public class AggregatedData {
 
-    @Column(unique = true, nullable = false)
     private long epoch;
     private float min;
     private float max;
@@ -66,14 +65,16 @@ public class AggregatedData {
 
         AggregatedData that = (AggregatedData) o;
 
-        if (Float.compare(that.min, min) != 0) return false;
-        return Float.compare(that.max, max) == 0;
+        if (epoch != that.epoch) return false;
+        if (type != that.type) return false;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        int result = (min != +0.0f ? Float.floatToIntBits(min) : 0);
-        result = 31 * result + (max != +0.0f ? Float.floatToIntBits(max) : 0);
+        int result = (int) (epoch ^ (epoch >>> 32));
+        result = 31 * result + (int) type;
+        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
 }

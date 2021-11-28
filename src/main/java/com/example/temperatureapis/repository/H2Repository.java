@@ -2,25 +2,30 @@ package com.example.temperatureapis.repository;
 
 import com.example.temperatureapis.domain.AggregatedData;
 import com.example.temperatureapis.domain.Temperature;
+import com.example.temperatureapis.exceptionhandler.Errors;
 import com.example.temperatureapis.repository.crud.TemperatureAggregatedCrud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Component
 @Profile("h2Repo")
 @RequiredArgsConstructor
 public class H2Repository implements Repository {
     private final TemperatureAggregatedCrud crud;
-    private static final char DAILY = 'D';
-    private static final char HOURLY = 'H';
+    protected static final char DAILY = 'D';
+    protected static final char HOURLY = 'H';
 
     @Override
     public void insert(Temperature temperature) {
-        temperature.setId(UUID.randomUUID());
+        if (temperature == null)
+            throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, Errors.NULL_TEMPERATURE);
+
         updateAggregatedData(temperature, ONE_HOUR_IN_SEC, HOURLY);
         updateAggregatedData(temperature, ONE_DAY_IN_SEC, DAILY);
     }
