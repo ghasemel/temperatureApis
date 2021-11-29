@@ -1,4 +1,4 @@
-package com.example.temperatureapis.exceptionhandler;
+package com.example.temperatureapis.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

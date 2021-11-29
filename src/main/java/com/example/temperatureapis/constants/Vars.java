@@ -1,7 +1,7 @@
-package com.example.temperatureapis;
+package com.example.temperatureapis.constants;
 
-public class Constants {
-    private Constants() {}
+public class Vars {
+    private Vars() {}
 
     // profiles
     public static final String H2_PROFILE = "h2Repo";

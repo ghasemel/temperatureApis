@@ -29,18 +29,18 @@ public class AggregatedData {
     @JsonIgnore
     private long id;
 
-    public AggregatedData(long id, long epoch, float singleData, char type) {
+    public AggregatedData(long id, long epoch, float data, char type) {
         this.id = id;
-        this.min = singleData;
-        this.max = singleData;
+        this.min = data;
+        this.max = data;
         this.epoch = epoch;
         this.type = type;
         updateAggregatedValue();
     }
 
-    public AggregatedData(long epoch, float singleData) {
-        this.min = singleData;
-        this.max = singleData;
+    public AggregatedData(long epoch, float data) {
+        this.min = data;
+        this.max = data;
         this.epoch = epoch;
         updateAggregatedValue();
     }

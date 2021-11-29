@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "1b5a7e2a-9963-48a1-8e6c-a59686dd2b1c",
+		"name": "temperature apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"epoch\": 1638010458,\n        \"value\": 12.6546\n    },\n    {\n        \"epoch\": 1638056441,\n        \"value\": 54\n    },\n    {\n        \"epoch\": 1637916041,\n        \"value\": 21.3\n    },\n    {\n        \"epoch\": 1637964000,\n        \"value\": 54\n    },\n    {\n        \"epoch\": 1638007320,\n        \"value\": 65.875\n    },\n    {\n        \"epoch\": 1637916041,\n        \"value\": 10.23\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/temperature",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"temperature"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get hourly",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"epoch\": 1638010458,\n        \"value\": 12.6546\n    },\n    {\n        \"epoch\": 1638056441,\n        \"value\": 54\n    },\n    {\n        \"epoch\": 1637916041,\n        \"value\": 21.3\n    },\n    {\n        \"epoch\": 1637964000,\n        \"value\": 54\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/temperature/hourly/1538007320/1738050520",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"temperature",
+						"hourly",
+						"1538007320",
+						"1738050520"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get daily",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"epoch\": 1638010458,\n        \"value\": 12.6546\n    },\n    {\n        \"epoch\": 1638056441,\n        \"value\": 54\n    },\n    {\n        \"epoch\": 1637916041,\n        \"value\": 21.3\n    },\n    {\n        \"epoch\": 1637964000,\n        \"value\": 54\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/temperature/daily/1538007320/1738050520",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"temperature",
+						"daily",
+						"1538007320",
+						"1738050520"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,4 +1,4 @@
-package com.example.temperatureapis.exceptionhandler;
+package com.example.temperatureapis.constants;
 
 public class Errors {
     private Errors() {}

@@ -1,8 +1,8 @@
 package com.example.temperatureapis.repository;
 
-import com.example.temperatureapis.Constants;
+import com.example.temperatureapis.constants.Errors;
+import com.example.temperatureapis.constants.Vars;
 import com.example.temperatureapis.domain.Temperature;
-import com.example.temperatureapis.exceptionhandler.Errors;
 import com.example.temperatureapis.repository.crud.TemperatureAggregatedCrud;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.HttpServerErrorException;
 
+import javax.transaction.Transactional;
+
 import static com.example.temperatureapis.TestConstants.*;
 import static com.example.temperatureapis.repository.Repository.ONE_DAY_IN_SEC;
 import static com.example.temperatureapis.repository.Repository.ONE_HOUR_IN_SEC;
@@ -18,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.Random.class)
 @SpringBootTest
-@ActiveProfiles(profiles = { Constants.H2_PROFILE, Constants.DEV })
+@ActiveProfiles(profiles = { Vars.H2_PROFILE, Vars.DEV })
+@Transactional
 class H2RepositoryTest extends RepositoryBaseTest {
 
     private H2Repository repository;
@@ -29,11 +32,6 @@ class H2RepositoryTest extends RepositoryBaseTest {
     @BeforeEach
     void setUp() {
         repository = new H2Repository(crud);
-    }
-
-    @AfterEach
-    void tearDown() {
-        crud.deleteAll();
     }
 
     @Test
